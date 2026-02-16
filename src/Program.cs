@@ -1,4 +1,7 @@
-﻿namespace Tableaux;
+﻿using System.Data;
+using System.Diagnostics;
+
+namespace Tableaux;
 
 class Program
 {
@@ -12,9 +15,7 @@ class Program
 
     static void Main(string[] args)
     {
-        var couleurs = new string[] {
-            "rouge", "orange", "jaune", "vert", "bleu", "violet"
-        };
+        var couleurs = "rouge,orange,jaune,vert,bleu,violet".Split(",");
 
         Afficher(couleurs);
         Console.WriteLine();
@@ -27,6 +28,12 @@ class Program
             couleursMaj[i] = couleurs[i].ToUpper();
         }
         #endregion
+        Afficher(couleursMaj);
+        Console.WriteLine();
 
+        couleurs[^1] = "Violet";
+        Afficher(couleurs[0..3]);
+        Console.WriteLine("---");
+        Afficher(couleurs[^2..]);
     }
 }
