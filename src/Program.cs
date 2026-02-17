@@ -1,10 +1,16 @@
-﻿namespace Culture;
+﻿using System.Diagnostics;
+using System.Globalization;
+using Microsoft.VisualBasic;
+
+namespace Culture;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // Nombres
+      var culture = CultureInfo.CreateSpecificCulture("fr-FR");
+      Thread.CurrentThread.CurrentCulture = culture;
+      // Nombres
       var prix = 3.4m;
 
       Console.WriteLine($"{prix} / {prix:c} / {prix:'€ '0.00}");
@@ -17,11 +23,12 @@ class Program
 
       Console.WriteLine($"RDV {début:f} - {fin:F} dans {attente:dd\\jhh\\hmm}");
       Console.WriteLine($"RDV {début:g} - {fin:G} dans {attente:g}");
-      Console.WriteLine($"RDV le {début:d} à {début:t} jusqu'à {fin:T} dans {attente:G}"); var texte0 = "Quel bel ét\u00e9 !";
+      Console.WriteLine($"RDV le {début:d} à {début:t} jusqu'à {fin:T} dans {attente:G}"); 
 
-      // Textes
-      var texte1 = "Quel bel ét\u0065\u0301 !";
-      var comparaison = texte0.Equals(texte1, StringComparison.Ordinal) ? "identiques" : "différents";
+        // Textes
+        var texte0 = "Quel bel ét\u00e9 !";
+        var texte1 = "Quel bel ét\u0065\u0301 !";
+        var comparaison = texte0.Equals(texte1, StringComparison.Ordinal) ? "identiques" : "différents";
 
       Console.WriteLine($"{texte0} et {texte1} sont {comparaison}");
     }
